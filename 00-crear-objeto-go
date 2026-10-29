@@ -1,0 +1,17 @@
+package main
+
+import "fmt"
+
+type Estudiante struct {
+	Nombre string
+	nota   float64 //minuscula privada
+}
+
+func (e Estudiante) Saludar() string {
+	return "Hola, soy " + e.Nombre
+}
+func main() {
+	e := Estudiante{Nombre: "Ana", nota: 9.5}
+
+	fmt.Println(e.Saludar())
+}

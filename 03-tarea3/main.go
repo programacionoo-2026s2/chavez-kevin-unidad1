@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 )
 
 const (
@@ -24,5 +25,39 @@ func main() {
 		os.Exit(ErrValor)
 	}
 
-	fmt.Println("Valor válido:", valor)
+	origen := strings.ToUpper(os.Args[2])
+	destino := strings.ToUpper(os.Args[3])
+
+	var bytesOrigen float64
+	switch origen {
+	case "B":
+		bytesOrigen = 1
+	case "KB":
+		bytesOrigen = 1024
+	case "MB":
+		bytesOrigen = 1024 * 1024
+	case "GB":
+		bytesOrigen = 1024 * 1024 * 1024
+	default:
+		fmt.Fprintf(os.Stderr, "Error: unidad de origen no reconocida: %s\n", origen)
+		os.Exit(ErrUnidad)
+	}
+
+	var bytesDestino float64
+	switch destino {
+	case "B":
+		bytesDestino = 1
+	case "KB":
+		bytesDestino = 1024
+	case "MB":
+		bytesDestino = 1024 * 1024
+	case "GB":
+		bytesDestino = 1024 * 1024 * 1024
+	default:
+		fmt.Fprintf(os.Stderr, "Error: unidad de destino no reconocida: %s\n", destino)
+		os.Exit(ErrUnidad)
+	}
+
+	resultado := valor * bytesOrigen / bytesDestino
+	fmt.Printf("%g %s = %.2f %s\n", valor, origen, resultado, destino)
 }

@@ -1,5 +1,5 @@
 # Tarea 5 - Analizador de subtítulos
-# Tarea 5 - Analizador de subtítulos
+
 
 ## Descripción
 Programa de consola en Go que analiza un texto contando sus bytes, runas, palabras, letras, dígitos, mayúsculas y runas de más de 1 byte, y verifica si cumple con el límite accesible de 42 runas para subtítulos.
